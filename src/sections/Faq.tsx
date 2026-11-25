@@ -22,9 +22,11 @@ function Faq() {
                   {faq.question}
                   <span
                     aria-hidden="true"
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sky text-xl text-royal transition-transform group-open:rotate-45 group-open:bg-gold group-open:text-navy"
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sky text-royal transition-transform group-open:rotate-45 group-open:bg-gold group-open:text-navy"
                   >
-                    +
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className="h-4 w-4">
+                      <path d="M12 5v14M5 12h14" />
+                    </svg>
                   </span>
                 </summary>
                 <p className="px-5 pb-5 leading-relaxed text-muted md:px-6 md:pb-6">{faq.answer}</p>

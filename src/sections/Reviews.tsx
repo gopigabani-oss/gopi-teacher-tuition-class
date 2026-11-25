@@ -21,11 +21,10 @@ const initials = (name: string) =>
     .map((part) => part[0])
     .join('')
 
-// Swipeable row of review cards with arrows and dots; it moves on by itself until the reader hovers, focuses or touches it.
+// Swipeable row of review cards with arrows and dots that moves on to the next review by itself.
 function Reviews() {
   const track = useRef<HTMLUListElement>(null)
   const [current, setCurrent] = useState(0)
-  const [paused, setPaused] = useState(false)
 
   const cardStep = () => {
     const first = track.current?.firstElementChild as HTMLElement | null
@@ -48,8 +47,8 @@ function Reviews() {
     return () => element.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Move on every few seconds. Any arrow, dot or swipe changes `current`, which restarts the wait.
   useEffect(() => {
-    if (paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const timer = window.setTimeout(() => goTo(current + 1), AUTOPLAY_MS)
     return () => window.clearTimeout(timer)
   })
@@ -70,14 +69,7 @@ function Reviews() {
           />
         </Reveal>
 
-        <div
-          className="mt-12"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          onFocus={() => setPaused(true)}
-          onBlur={() => setPaused(false)}
-          onTouchStart={() => setPaused(true)}
-        >
+        <div className="mt-12">
           <ul
             ref={track}
             aria-label="Parent reviews"

@@ -29,7 +29,7 @@ function Hero() {
       />
 
       <Container>
-        <div className="relative grid items-center gap-12 pt-12 pb-20 md:pt-16 lg:grid-cols-[1.15fr_1fr] lg:pt-20 lg:pb-28">
+        <div className="relative grid items-center gap-10 pt-10 pb-20 md:gap-12 md:pt-16 lg:grid-cols-[1.15fr_1fr] lg:pt-20 lg:pb-28">
           <div className="text-center lg:text-left">
             <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90 backdrop-blur">
               <span className="relative flex h-2.5 w-2.5">
@@ -83,7 +83,7 @@ function Hero() {
             </dl>
           </div>
 
-          <div className="relative mx-auto w-[14rem] md:w-[24rem] lg:w-[27rem]">
+          <div className="relative order-first mx-auto w-[13rem] md:w-[24rem] lg:order-none lg:w-[27rem]">
             <div aria-hidden="true" className="absolute -inset-6 animate-spin-slow rounded-full border-2 border-dashed border-gold/40" />
             <div aria-hidden="true" className="absolute -inset-14 hidden rounded-full border border-white/10 md:block" />
             <img
@@ -98,7 +98,7 @@ function Hero() {
                 key={badge.text}
                 aria-hidden="true"
                 style={{ animationDelay: badge.delay }}
-                className={`absolute flex h-12 w-12 animate-float items-center justify-center rounded-2xl text-xl font-extrabold shadow-xl md:h-14 md:w-14 ${badge.className}`}
+                className={`absolute flex h-10 w-10 animate-float items-center justify-center rounded-xl text-base font-extrabold shadow-xl md:h-14 md:w-14 md:rounded-2xl md:text-xl ${badge.className}`}
               >
                 {badge.text}
               </span>
