@@ -2,9 +2,11 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import WhatsAppButton from './components/WhatsAppButton'
 import Boards from './sections/Boards'
+import CallToAction from './sections/CallToAction'
 import Contact from './sections/Contact'
 import Courses from './sections/Courses'
 import Hero from './sections/Hero'
+import SubjectStrip from './sections/SubjectStrip'
 import WhyUs from './sections/WhyUs'
 
 function App() {
@@ -13,9 +15,11 @@ function App() {
       <Header />
       <main>
         <Hero />
+        <SubjectStrip />
         <Courses />
         <Boards />
         <WhyUs />
+        <CallToAction />
         <Contact />
       </main>
       <Footer />

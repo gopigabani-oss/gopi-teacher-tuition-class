@@ -1,35 +1,78 @@
+import { useState } from 'react'
 import Container from '../components/Container'
-import { BookIcon } from '../components/icons'
+import { CalculatorIcon, FlaskIcon, GlobeIcon, HourglassIcon, LandmarkIcon } from '../components/icons'
+import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
-import { mediums } from '../data/site'
+import { mediums, type Subject } from '../data/site'
+
+const icons = { maths: CalculatorIcon, science: FlaskIcon, globe: GlobeIcon, history: HourglassIcon, civics: LandmarkIcon }
+
+function SubjectBadge({ subject }: { subject: Subject }) {
+  if (subject.icon === 'language') {
+    return <span className="text-xl leading-none font-extrabold">{subject.glyph}</span>
+  }
+  const Icon = icons[subject.icon]
+  return <Icon className="h-6 w-6" />
+}
 
 function Courses() {
+  const [active, setActive] = useState(0)
+  const medium = mediums[active]
+
   return (
-    <section id="courses" aria-labelledby="courses-heading" className="scroll-mt-18 bg-surface py-16 md:py-20">
+    <section id="courses" aria-labelledby="courses-heading" className="scroll-mt-18 bg-surface py-20 md:py-28">
       <Container>
-        <SectionHeading
-          id="courses-heading"
-          eyebrow="Our Courses"
-          title="Classes for Std 1 to 12"
-          intro="Choose your medium. We teach every main school subject."
-        />
-        <div className="mt-10 grid gap-6 md:mt-12 md:grid-cols-2 md:gap-8">
-          {mediums.map((medium) => (
-            <article key={medium.name} className="overflow-hidden rounded-2xl border border-gold/40 bg-white shadow-sm">
-              <div className="flex items-center justify-between gap-3 bg-royal px-6 py-5 text-white">
-                <h3 className="text-xl font-extrabold">{medium.name}</h3>
-                <span className="rounded-full bg-gold px-3 py-1 text-sm font-bold text-navy">{medium.standards}</span>
-              </div>
-              <ul className="grid grid-cols-2 gap-2 p-4 sm:gap-3 sm:p-6">
-                {medium.subjects.map((subject) => (
-                  <li key={subject} className="flex items-center gap-2 rounded-lg bg-sky px-3 py-3 text-sm font-semibold text-navy sm:gap-3 sm:px-4 sm:text-base">
-                    <BookIcon className="h-5 w-5 shrink-0 text-gold" />
-                    {subject}
-                  </li>
-                ))}
-              </ul>
-            </article>
+        <Reveal>
+          <SectionHeading
+            id="courses-heading"
+            eyebrow="Our Courses"
+            title="Classes for"
+            highlight="Std 1 to 12"
+            intro="Pick your medium to see the subjects we teach."
+          />
+        </Reveal>
+
+        <div role="tablist" aria-label="Medium" className="mx-auto mt-10 flex w-fit rounded-full bg-sky p-1.5">
+          {mediums.map((option, index) => (
+            <button
+              key={option.name}
+              type="button"
+              role="tab"
+              id={`tab-${index}`}
+              aria-selected={active === index}
+              aria-controls="subjects-panel"
+              onClick={() => setActive(index)}
+              className={`rounded-full px-5 py-2.5 text-sm font-bold transition-all md:px-8 md:text-base ${
+                active === index ? 'bg-royal text-white shadow-lg shadow-royal/30' : 'text-navy hover:text-royal'
+              }`}
+            >
+              {option.short} Medium
+            </button>
           ))}
+        </div>
+
+        <div id="subjects-panel" role="tabpanel" aria-labelledby={`tab-${active}`} className="mt-10">
+          <p className="text-center text-sm font-semibold text-muted">
+            {medium.name} · {medium.standards} · {medium.subjects.length} subjects
+          </p>
+          <ul key={medium.name} className="mt-6 flex flex-wrap justify-center gap-3 md:gap-5">
+            {medium.subjects.map((subject, index) => (
+              <li
+                key={subject.name}
+                style={{ animationDelay: `${index * 50}ms` }}
+                className="group relative w-[calc((100%-0.75rem)/2)] animate-[float_0.5s_ease-out_backwards] overflow-hidden rounded-2xl border border-navy/10 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-transparent hover:bg-royal hover:shadow-xl hover:shadow-royal/25 sm:w-[calc((100%-1.5rem)/3)] md:w-[calc((100%-2.5rem)/3)] lg:w-[calc((100%-5rem)/5)]"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-sky text-royal transition-colors group-hover:bg-gold group-hover:text-navy">
+                  <SubjectBadge subject={subject} />
+                </span>
+                <p className="mt-4 font-bold text-navy transition-colors group-hover:text-white">{subject.name}</p>
+                <span
+                  aria-hidden="true"
+                  className="absolute -right-6 -bottom-6 h-16 w-16 rounded-full bg-gold/10 transition-transform duration-500 group-hover:scale-[3]"
+                />
+              </li>
+            ))}
+          </ul>
         </div>
       </Container>
     </section>

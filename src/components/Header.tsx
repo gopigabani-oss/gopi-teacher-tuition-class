@@ -7,11 +7,11 @@ function Header() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-40 border-b border-gold/30 bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-navy/5 bg-white/80 shadow-sm backdrop-blur-lg">
       <Container>
         <div className="flex h-18 items-center justify-between gap-4">
           <a href="#home" className="flex items-center gap-3">
-            <img src="/images/logo.png" alt="" width="52" height="52" className="h-13 w-13" />
+            <img src="/images/logo.png" alt="" width="52" height="52" className="h-13 w-13 transition-transform duration-500 hover:rotate-[360deg]" />
             <span className="leading-tight">
               <span className="block text-base font-extrabold text-navy md:text-lg">{site.name}</span>
               <span className="block text-xs font-semibold tracking-[0.15em] text-gold uppercase">{site.tagline}</span>
@@ -20,13 +20,13 @@ function Header() {
 
           <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">
             {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="text-sm font-semibold text-ink hover:text-royal">
+              <a key={link.href} href={link.href} className="relative text-sm font-semibold text-ink after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:rounded-full after:bg-gold after:transition-all hover:text-royal hover:after:w-full">
                 {link.label}
               </a>
             ))}
             <a
               href={site.phoneHref}
-              className="inline-flex items-center gap-2 rounded-full bg-royal px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-navy"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-royal to-navy px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-royal/25 transition-transform hover:-translate-y-0.5"
             >
               <PhoneIcon className="h-4 w-4" />
               Call Now
