@@ -83,11 +83,11 @@ function Hero() {
             </dl>
           </div>
 
-          <div className="relative mx-auto w-[17rem] md:w-[24rem] lg:w-[27rem]">
+          <div className="relative mx-auto w-[14rem] md:w-[24rem] lg:w-[27rem]">
             <div aria-hidden="true" className="absolute -inset-6 animate-spin-slow rounded-full border-2 border-dashed border-gold/40" />
             <div aria-hidden="true" className="absolute -inset-14 hidden rounded-full border border-white/10 md:block" />
             <img
-              src="/images/logo.png"
+              src="/images/logo.webp"
               alt={`${site.name} logo — ${site.tagline}, Estd ${site.established}`}
               width="640"
               height="640"

@@ -10,7 +10,7 @@ function Footer() {
         <div className="grid gap-10 py-12 md:grid-cols-3">
           <div>
             <div className="flex items-center gap-3">
-              <img src="/images/logo.png" alt="" width="56" height="56" className="h-14 w-14" />
+              <img src="/images/logo-sm.webp" alt="" width="56" height="56" className="h-14 w-14" />
               <div>
                 <p className="font-extrabold text-white">{site.name}</p>
                 <p className="text-xs font-semibold tracking-[0.15em] text-gold uppercase">{site.tagline}</p>

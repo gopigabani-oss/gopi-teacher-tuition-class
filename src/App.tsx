@@ -1,7 +1,7 @@
+import BackToTop from './components/BackToTop'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import WhatsAppButton from './components/WhatsAppButton'
-import Boards from './sections/Boards'
 import Contact from './sections/Contact'
 import Courses from './sections/Courses'
 import Faq from './sections/Faq'
@@ -21,7 +21,6 @@ function App() {
         <SubjectStrip />
         <Levels />
         <Courses />
-        <Boards />
         <WhyUs />
         <Reviews />
         <HowToJoin />
@@ -29,6 +28,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <BackToTop />
       <WhatsAppButton />
     </>
   )

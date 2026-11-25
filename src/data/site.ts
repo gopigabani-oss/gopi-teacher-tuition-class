@@ -20,8 +20,8 @@ export const site = {
 export const navLinks = [
   { label: 'Home', href: '#home' },
   { label: 'Courses', href: '#courses' },
-  { label: 'Boards', href: '#boards' },
   { label: 'Why Us', href: '#why-us' },
+  { label: 'Reviews', href: '#reviews' },
   { label: 'FAQ', href: '#faq' },
   { label: 'Contact', href: '#contact' },
 ]

@@ -33,6 +33,12 @@
       transform: translateY(-12px);
     }
   }
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+  }
   @keyframes marquee {
     to {
       transform: translateX(-50%);
@@ -72,6 +78,14 @@ body {
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+
+/* Horizontal scrollers that swipe without showing a scrollbar. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 /* Soft dotted grid behind dark sections. */

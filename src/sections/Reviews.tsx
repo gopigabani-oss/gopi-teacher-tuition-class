@@ -1,7 +1,11 @@
+import { useEffect, useRef, useState } from 'react'
+import Container from '../components/Container'
+import { ArrowRightIcon } from '../components/icons'
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
-import Container from '../components/Container'
 import { reviews } from '../data/site'
+
+const AUTOPLAY_MS = 5000
 
 function QuoteIcon({ className }: { className?: string }) {
   return (
@@ -11,31 +15,50 @@ function QuoteIcon({ className }: { className?: string }) {
   )
 }
 
-function ReviewCard({ review }: { review: (typeof reviews)[number] }) {
-  return (
-    <figure className="flex w-[18rem] shrink-0 flex-col rounded-3xl border border-navy/10 bg-white p-6 shadow-sm md:w-[22rem] md:p-7">
-      <QuoteIcon className="h-8 w-8 text-gold" />
-      <blockquote className="mt-4 flex-1 leading-relaxed text-ink/85">{review.text}</blockquote>
-      <figcaption className="mt-5 flex items-center gap-3 border-t border-navy/10 pt-4">
-        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-royal to-navy text-sm font-bold text-white">
-          {review.name
-            .split(' ')
-            .map((part) => part[0])
-            .join('')}
-        </span>
-        <span>
-          <span className="block font-bold text-navy">{review.name}</span>
-          <span className="block text-xs text-muted">Parent</span>
-        </span>
-      </figcaption>
-    </figure>
-  )
-}
+const initials = (name: string) =>
+  name
+    .split(' ')
+    .map((part) => part[0])
+    .join('')
 
-// Reviews slide past in a loop and pause on hover. The second copy is only there to make the loop seamless.
+// Swipeable row of review cards with arrows and dots; it moves on by itself until the reader hovers, focuses or touches it.
 function Reviews() {
+  const track = useRef<HTMLUListElement>(null)
+  const [current, setCurrent] = useState(0)
+  const [paused, setPaused] = useState(false)
+
+  const cardStep = () => {
+    const first = track.current?.firstElementChild as HTMLElement | null
+    return first ? first.offsetWidth + parseFloat(getComputedStyle(track.current!).columnGap || '0') : 1
+  }
+
+  const goTo = (index: number) => {
+    const element = track.current
+    if (!element) return
+    const atEnd = element.scrollLeft + element.clientWidth >= element.scrollWidth - 4
+    const target = index >= reviews.length || (index > current && atEnd) ? 0 : Math.max(0, index)
+    element.scrollTo({ left: target * cardStep(), behavior: 'smooth' })
+  }
+
+  useEffect(() => {
+    const element = track.current
+    if (!element) return
+    const onScroll = () => setCurrent(Math.round(element.scrollLeft / cardStep()))
+    element.addEventListener('scroll', onScroll, { passive: true })
+    return () => element.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    if (paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const timer = window.setTimeout(() => goTo(current + 1), AUTOPLAY_MS)
+    return () => window.clearTimeout(timer)
+  })
+
+  const arrowClass =
+    'flex h-12 w-12 items-center justify-center rounded-full border border-navy/15 bg-white text-navy shadow-sm transition-colors hover:border-royal hover:bg-royal hover:text-white'
+
   return (
-    <section aria-labelledby="reviews-heading" className="overflow-hidden bg-sky py-20 md:py-28">
+    <section id="reviews" aria-labelledby="reviews-heading" className="scroll-mt-18 bg-sky py-20 md:py-28">
       <Container>
         <Reveal>
           <SectionHeading
@@ -46,22 +69,68 @@ function Reviews() {
             intro="Kind words from the families we teach."
           />
         </Reveal>
-      </Container>
-      <div className="group relative mt-12">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-sky md:w-32" />
-        <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-sky md:w-32" />
-        <div className="flex w-max animate-[marquee_60s_linear_infinite] group-hover:[animation-play-state:paused]">
-          {[0, 1].map((copy) => (
-            <ul key={copy} aria-hidden={copy === 1} className="flex shrink-0 items-stretch gap-5 pr-5">
-              {reviews.map((review) => (
-                <li key={review.name} className="flex">
-                  <ReviewCard review={review} />
-                </li>
+
+        <div
+          className="mt-12"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocus={() => setPaused(true)}
+          onBlur={() => setPaused(false)}
+          onTouchStart={() => setPaused(true)}
+        >
+          <ul
+            ref={track}
+            aria-label="Parent reviews"
+            className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth scroll-px-4 px-4 pb-4 md:scroll-px-0 md:mx-0 md:px-0"
+          >
+            {reviews.map((review) => (
+              <li
+                key={review.name}
+                className="flex w-[85%] shrink-0 snap-start sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
+              >
+                <figure className="flex w-full flex-col rounded-3xl border border-navy/10 bg-white p-6 shadow-sm md:p-7">
+                  <div className="flex items-start justify-between">
+                    <QuoteIcon className="h-9 w-9 text-gold" />
+                  </div>
+                  <blockquote className="mt-4 flex-1 text-[1.0625rem] leading-relaxed text-ink/85">{review.text}</blockquote>
+                  <figcaption className="mt-6 flex items-center gap-3 border-t border-navy/10 pt-5">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-royal to-navy text-sm font-bold text-white">
+                      {initials(review.name)}
+                    </span>
+                    <span>
+                      <span className="block font-bold text-navy">{review.name}</span>
+                      <span className="block text-xs text-muted">Parent</span>
+                    </span>
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-6 flex items-center justify-between gap-4">
+            <div className="flex flex-wrap gap-2">
+              {reviews.map((review, index) => (
+                <button
+                  key={review.name}
+                  type="button"
+                  onClick={() => goTo(index)}
+                  aria-label={`Show review ${index + 1}`}
+                  aria-current={current === index ? 'true' : undefined}
+                  className={`h-2.5 rounded-full transition-all ${current === index ? 'w-8 bg-royal' : 'w-2.5 bg-navy/20 hover:bg-navy/40'}`}
+                />
               ))}
-            </ul>
-          ))}
+            </div>
+            <div className="flex gap-2">
+              <button type="button" onClick={() => goTo(current - 1)} aria-label="Previous review" className={arrowClass}>
+                <ArrowRightIcon className="h-5 w-5 rotate-180" />
+              </button>
+              <button type="button" onClick={() => goTo(current + 1)} aria-label="Next review" className={arrowClass}>
+                <ArrowRightIcon className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      </Container>
     </section>
   )
 }

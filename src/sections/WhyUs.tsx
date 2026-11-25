@@ -21,7 +21,7 @@ function WhyUs() {
             <Reveal className="h-full">
               <div className="relative flex h-full min-h-[16rem] flex-col justify-end overflow-hidden rounded-3xl bg-gradient-to-br from-gold-light via-gold to-[#b07f0c] p-8 text-navy">
                 <img
-                  src="/images/logo.png"
+                  src="/images/logo.webp"
                   alt=""
                   className="absolute -top-10 -right-10 w-56 rotate-12 opacity-25 md:w-72"
                 />

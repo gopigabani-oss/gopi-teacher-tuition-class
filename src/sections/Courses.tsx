@@ -1,23 +1,56 @@
 import { useState } from 'react'
 import Container from '../components/Container'
-import { CalculatorIcon, FlaskIcon, GlobeIcon, HourglassIcon, LandmarkIcon } from '../components/icons'
+import {
+  ArrowRightIcon,
+  CalculatorIcon,
+  FlaskIcon,
+  GlobeIcon,
+  HourglassIcon,
+  LandmarkIcon,
+  WhatsAppIcon,
+} from '../components/icons'
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
-import { mediums, type Subject } from '../data/site'
+import { boards, mediums, site, whatsappLink, type Subject } from '../data/site'
 
 const icons = { maths: CalculatorIcon, science: FlaskIcon, globe: GlobeIcon, history: HourglassIcon, civics: LandmarkIcon }
+const standards = Array.from({ length: 12 }, (_, index) => index + 1)
 
 function SubjectBadge({ subject }: { subject: Subject }) {
   if (subject.icon === 'language') {
-    return <span className="text-xl leading-none font-extrabold">{subject.glyph}</span>
+    return <span className="text-lg leading-none font-extrabold">{subject.glyph}</span>
   }
   const Icon = icons[subject.icon]
-  return <Icon className="h-6 w-6" />
+  return <Icon className="h-5 w-5" />
 }
 
+function ChoiceLabel({ step, children }: { step: number; children: string }) {
+  return (
+    <p className="flex items-center gap-2 text-sm font-bold text-navy">
+      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gold text-xs text-navy">{step}</span>
+      {children}
+    </p>
+  )
+}
+
+const chipClass = (selected: boolean) =>
+  `rounded-xl border-2 font-bold transition-all ${
+    selected
+      ? 'border-royal bg-royal text-white shadow-lg shadow-royal/25'
+      : 'border-navy/10 bg-white text-navy hover:border-royal/40 hover:text-royal'
+  }`
+
+// Class finder: the parent picks standard, medium and board, sees the subjects, and enquires with one tap.
 function Courses() {
-  const [active, setActive] = useState(0)
-  const medium = mediums[active]
+  const [standard, setStandard] = useState<number | null>(null)
+  const [mediumIndex, setMediumIndex] = useState(0)
+  const [board, setBoard] = useState<string | null>(null)
+  const medium = mediums[mediumIndex]
+
+  const summary = [standard && `Std ${standard}`, medium.name, board].filter(Boolean).join(' · ')
+  const enquiry = whatsappLink(
+    ['Hello,', `I would like to know about tuition for ${summary} at Gopi Teacher Tuition Class.`].join('\n'),
+  )
 
   return (
     <section id="courses" aria-labelledby="courses-heading" className="scroll-mt-18 bg-surface py-20 md:py-28">
@@ -25,55 +58,119 @@ function Courses() {
         <Reveal>
           <SectionHeading
             id="courses-heading"
-            eyebrow="Our Courses"
+            eyebrow="Find Your Class"
             title="Subjects we"
             highlight="teach"
-            intro="Pick your medium to see the subjects we teach."
+            intro="Choose your child's standard, medium and board to see the subjects and enquire in one tap."
           />
         </Reveal>
 
-        <div role="tablist" aria-label="Medium" className="mx-auto mt-10 flex w-fit rounded-full bg-sky p-1.5">
-          {mediums.map((option, index) => (
-            <button
-              key={option.name}
-              type="button"
-              role="tab"
-              id={`tab-${index}`}
-              aria-selected={active === index}
-              aria-controls="subjects-panel"
-              onClick={() => setActive(index)}
-              className={`rounded-full px-5 py-2.5 text-sm font-bold transition-all md:px-8 md:text-base ${
-                active === index ? 'bg-royal text-white shadow-lg shadow-royal/30' : 'text-navy hover:text-royal'
-              }`}
-            >
-              {option.short} Medium
-            </button>
-          ))}
-        </div>
+        <Reveal>
+          <div className="mt-12 grid overflow-hidden rounded-[2rem] border border-navy/10 bg-white shadow-xl shadow-navy/5 lg:grid-cols-[1fr_1.1fr]">
+            <div className="flex flex-col gap-7 p-6 md:p-8">
+              <fieldset>
+                <legend>
+                  <ChoiceLabel step={1}>Standard</ChoiceLabel>
+                </legend>
+                <div className="mt-3 grid grid-cols-6 gap-2">
+                  {standards.map((value) => (
+                    <button
+                      key={value}
+                      type="button"
+                      aria-pressed={standard === value}
+                      aria-label={`Std ${value}`}
+                      onClick={() => setStandard(value)}
+                      className={`h-11 ${chipClass(standard === value)}`}
+                    >
+                      {value}
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
 
-        <div id="subjects-panel" role="tabpanel" aria-labelledby={`tab-${active}`} className="mt-10">
-          <p className="text-center text-sm font-semibold text-muted">
-            {medium.name} · {medium.standards} · {medium.subjects.length} subjects
-          </p>
-          <ul key={medium.name} className="mt-6 flex flex-wrap justify-center gap-3 md:gap-5">
-            {medium.subjects.map((subject, index) => (
-              <li
-                key={subject.name}
-                style={{ animationDelay: `${index * 50}ms` }}
-                className="group relative w-[calc((100%-0.75rem)/2)] animate-[float_0.5s_ease-out_backwards] overflow-hidden rounded-2xl border border-navy/10 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-transparent hover:bg-royal hover:shadow-xl hover:shadow-royal/25 sm:w-[calc((100%-1.5rem)/3)] md:w-[calc((100%-2.5rem)/3)] lg:w-[calc((100%-5rem)/5)]"
+              <fieldset>
+                <legend>
+                  <ChoiceLabel step={2}>Medium</ChoiceLabel>
+                </legend>
+                <div className="mt-3 grid grid-cols-2 gap-2">
+                  {mediums.map((option, index) => (
+                    <button
+                      key={option.name}
+                      type="button"
+                      aria-pressed={mediumIndex === index}
+                      onClick={() => setMediumIndex(index)}
+                      className={`h-12 ${chipClass(mediumIndex === index)}`}
+                    >
+                      {option.name}
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>
+                  <ChoiceLabel step={3}>Board</ChoiceLabel>
+                </legend>
+                <div className="mt-3 grid grid-cols-4 gap-2">
+                  {boards.map((option) => (
+                    <button
+                      key={option.short}
+                      type="button"
+                      aria-pressed={board === option.short}
+                      title={option.name}
+                      onClick={() => setBoard(option.short)}
+                      className={`h-11 text-sm ${chipClass(board === option.short)}`}
+                    >
+                      {option.short}
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+
+              <p className="mt-auto rounded-2xl bg-sky px-4 py-3 text-sm text-navy">
+                Not sure which to choose?{' '}
+                <a href={site.phoneHref} className="font-bold text-royal underline-offset-2 hover:underline">
+                  Call {site.phoneDisplay}
+                </a>{' '}
+                and we'll help.
+              </p>
+            </div>
+
+            <div className="relative flex flex-col overflow-hidden bg-night p-6 text-white md:p-8">
+              <div aria-hidden="true" className="dot-grid absolute inset-0" />
+              <div aria-hidden="true" className="absolute -top-16 -right-16 h-56 w-56 rounded-full bg-gold/25 blur-3xl" />
+              <div className="relative" aria-live="polite">
+                <p className="text-xs font-bold tracking-[0.18em] text-gold-light uppercase">Your class</p>
+                <p className="mt-2 text-2xl font-extrabold md:text-[1.75rem]">{summary}</p>
+                <p className="mt-1 text-sm text-white/60">{medium.subjects.length} subjects</p>
+              </div>
+              <ul key={medium.name} className="relative mt-6 grid grid-cols-2 gap-2.5 sm:grid-cols-3">
+                {medium.subjects.map((subject, index) => (
+                  <li
+                    key={subject.name}
+                    style={{ animationDelay: `${index * 40}ms` }}
+                    className="flex animate-[pop_0.4s_ease-out_backwards] items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.07] px-3 py-3 text-sm font-semibold"
+                  >
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gold text-navy">
+                      <SubjectBadge subject={subject} />
+                    </span>
+                    {subject.name}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={enquiry}
+                target="_blank"
+                rel="noreferrer"
+                className="group relative mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold-light to-gold px-6 py-4 font-bold text-navy transition-transform hover:-translate-y-0.5 lg:mt-auto"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-sky text-royal transition-colors group-hover:bg-gold group-hover:text-navy">
-                  <SubjectBadge subject={subject} />
-                </span>
-                <p className="mt-4 font-bold text-navy transition-colors group-hover:text-white">{subject.name}</p>
-                <span
-                  aria-hidden="true"
-                  className="absolute -right-6 -bottom-6 h-16 w-16 rounded-full bg-gold/10 transition-transform duration-500 group-hover:scale-[3]"
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
+                <WhatsAppIcon className="h-5 w-5" />
+                Enquire for {standard ? `Std ${standard}` : 'this class'}
+                <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
+            </div>
+          </div>
+        </Reveal>
       </Container>
     </section>
   )
