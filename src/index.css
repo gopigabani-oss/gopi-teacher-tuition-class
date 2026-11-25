@@ -57,7 +57,8 @@ html {
 }
 
 body {
-  @apply bg-surface font-body text-ink antialiased;
+  /* Room for the Call / WhatsApp bar fixed to the bottom on phones. */
+  @apply bg-surface pb-17 font-body text-ink antialiased md:pb-0;
 }
 
 /* Sections fade up as they scroll into view; see components/Reveal.tsx. */

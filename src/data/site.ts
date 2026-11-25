@@ -1,6 +1,9 @@
 const phone = '9510331544'
 const whatsappText = 'Hello,\nI would like to know about admission at Gopi Teacher Tuition Class.'
 
+// wa.me link that opens a chat with the class, with `text` already typed in.
+export const whatsappLink = (text: string) => `https://wa.me/91${phone}?text=${encodeURIComponent(text)}`
+
 export const site = {
   name: 'Gopi Teacher Tuition Class',
   tagline: 'Where Minds Shine',
@@ -8,7 +11,7 @@ export const site = {
   phone,
   phoneDisplay: '+91 95103 31544',
   phoneHref: `tel:+91${phone}`,
-  whatsappHref: `https://wa.me/91${phone}?text=${encodeURIComponent(whatsappText)}`,
+  whatsappHref: whatsappLink(whatsappText),
   address: 'B/10 Smrutibindu Park Society, Ghodasar, Ahmedabad',
   mapHref: 'https://www.google.com/maps/search/?api=1&query=Smrutibindu+Park+Society+Ghodasar+Ahmedabad',
   mapEmbed: 'https://www.google.com/maps?q=Smrutibindu+Park+Society,+Ghodasar,+Ahmedabad&output=embed',
@@ -19,6 +22,7 @@ export const navLinks = [
   { label: 'Courses', href: '#courses' },
   { label: 'Boards', href: '#boards' },
   { label: 'Why Us', href: '#why-us' },
+  { label: 'FAQ', href: '#faq' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -75,4 +79,36 @@ export const reasons = [
   { title: 'Gujarati & English Medium', text: 'Lessons in the medium your child studies in at school.' },
   { title: 'Concepts First', text: 'We explain the why behind every topic, not just answers to memorise.' },
   { title: 'Regular Practice & Tests', text: 'Homework, revision and tests that keep students exam-ready.' },
+]
+
+export const levels = [
+  { name: 'Primary', standards: 'Std 1–5', text: 'Reading, writing and number skills built step by step.' },
+  { name: 'Upper Primary', standards: 'Std 6–8', text: 'Stronger concepts in every subject before high school.' },
+  { name: 'Secondary', standards: 'Std 9–10', text: 'Full syllabus coverage and preparation for the Std 10 board exam.' },
+  { name: 'Higher Secondary', standards: 'Std 11–12', text: 'Focused support for Std 11 and the Std 12 board exam.' },
+]
+
+export const joinSteps = [
+  { title: 'Call or WhatsApp', text: "Tell us your child's standard, medium and board." },
+  { title: 'Visit the class', text: 'Come to Ghodasar, meet the teacher and see the classroom.' },
+  { title: 'Start learning', text: 'Your child joins the batch that suits them best.' },
+]
+
+export const faqs = [
+  { question: 'Which standards do you teach?', answer: 'We teach Std 1 to 12.' },
+  {
+    question: 'Do you teach both Gujarati and English medium?',
+    answer:
+      'Yes. Gujarati medium: Maths, Science, Social Science, English, Gujarati, Hindi and Sanskrit. English medium: Maths, Science, Geography, History, Civics, English, English Grammar, Gujarati, Hindi and Sanskrit.',
+  },
+  { question: 'Which boards do you cover?', answer: 'GSEB, NCERT, CBSE and ICSE.' },
+  { question: 'Where is the class?', answer: `${site.address}.` },
+  {
+    question: 'What are the timings and fees?',
+    answer: `They depend on the standard and batch. Call or WhatsApp us on ${site.phoneDisplay} and we will share the details.`,
+  },
+  {
+    question: 'How do I take admission?',
+    answer: 'Send us a message using the enquiry form below, or call or WhatsApp us. We will guide you through the rest.',
+  },
 ]

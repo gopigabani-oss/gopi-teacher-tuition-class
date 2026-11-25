@@ -26,8 +26,8 @@ function Courses() {
           <SectionHeading
             id="courses-heading"
             eyebrow="Our Courses"
-            title="Classes for"
-            highlight="Std 1 to 12"
+            title="Subjects we"
+            highlight="teach"
             intro="Pick your medium to see the subjects we teach."
           />
         </Reveal>
