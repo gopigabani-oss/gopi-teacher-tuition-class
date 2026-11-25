@@ -1,17 +1,25 @@
 @import 'tailwindcss';
 
-/* Brand theme tokens — available as Tailwind utilities, e.g. bg-primary-600, text-ink. */
+/* Brand theme tokens — available as Tailwind utilities, e.g. bg-royal, text-gold.
+   Colours are taken from the logo: royal blue lettering and shield, a deeper navy, and the gold ring and laurels. */
 @theme {
-  --color-primary-50: #eff4ff;
-  --color-primary-100: #dbe6fe;
-  --color-primary-600: #1e3a8a;
-  --color-primary-700: #172e6e;
+  --color-royal: #1d3fa0;
+  --color-navy: #0f2266;
+  --color-gold: #d4a017;
+  --color-gold-light: #f2c23a;
+  --color-sky: #eef3ff;
 
-  --color-surface: #ffffff;
+  --color-surface: #fffdf7;
   --color-ink: #111827;
-  --color-muted: #6b7280;
+  --color-muted: #5b6475;
 
   --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --spacing-18: 4.5rem;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {

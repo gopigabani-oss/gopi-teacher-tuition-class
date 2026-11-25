@@ -1,10 +1,26 @@
-// Placeholder home page until the real sections are built.
+import Footer from './components/Footer'
+import Header from './components/Header'
+import WhatsAppButton from './components/WhatsAppButton'
+import Boards from './sections/Boards'
+import Contact from './sections/Contact'
+import Courses from './sections/Courses'
+import Hero from './sections/Hero'
+import WhyUs from './sections/WhyUs'
+
 function App() {
   return (
-    <main className="flex min-h-dvh flex-col items-center justify-center bg-primary-50 px-4 text-center">
-      <h1 className="text-[2rem] font-bold text-primary-600 md:text-[3rem]">Gopi Teacher Tuition Class</h1>
-      <p className="mt-3 text-muted">Website coming soon.</p>
-    </main>
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <Courses />
+        <Boards />
+        <WhyUs />
+        <Contact />
+      </main>
+      <Footer />
+      <WhatsAppButton />
+    </>
   )
 }
 
