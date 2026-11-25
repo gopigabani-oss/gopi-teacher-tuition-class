@@ -115,11 +115,11 @@ export const faqs = [
 
 // Parent reviews, as sent by the class.
 export const reviews = [
-  'One of the best tuition classes. The teaching quality is excellent, and my child enjoys learning here.',
-  "Excellent teaching and a friendly learning environment. We are very happy with our child's progress.",
-  'Highly recommended! The teaching methods are simple, effective, and easy for children to understand.',
-  'Very good tuition classes. My child has become more confident and interested in studies.',
-  "Great teaching quality and personal attention to every student. We are happy with the improvement in our child's studies.",
-  'My child loves attending these classes. The concepts are explained in an easy and interesting way.',
-  "Excellent tuition classes with a positive environment. Truly appreciate the teacher's efforts and dedication.",
+  { name: 'Priya Patel', text: 'One of the best tuition classes. The teaching quality is excellent, and my child enjoys learning here.' },
+  { name: 'Neha Shah', text: "Excellent teaching and a friendly learning environment. We are very happy with our child's progress." },
+  { name: 'Pooja Patel', text: 'Highly recommended! The teaching methods are simple, effective, and easy for children to understand.' },
+  { name: 'Ritu Mehta', text: 'Very good tuition classes. My child has become more confident and interested in studies.' },
+  { name: 'Sneha Desai', text: "Great teaching quality and personal attention to every student. We are happy with the improvement in our child's studies." },
+  { name: 'Rahul Patel', text: 'My child loves attending these classes. The concepts are explained in an easy and interesting way.' },
+  { name: 'Amit Shah', text: "Excellent tuition classes with a positive environment. Truly appreciate the teacher's efforts and dedication." },
 ]

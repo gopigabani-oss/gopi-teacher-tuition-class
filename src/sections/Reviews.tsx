@@ -11,16 +11,22 @@ function QuoteIcon({ className }: { className?: string }) {
   )
 }
 
-function ReviewCard({ review }: { review: string }) {
+function ReviewCard({ review }: { review: (typeof reviews)[number] }) {
   return (
     <figure className="flex w-[18rem] shrink-0 flex-col rounded-3xl border border-navy/10 bg-white p-6 shadow-sm md:w-[22rem] md:p-7">
       <QuoteIcon className="h-8 w-8 text-gold" />
-      <blockquote className="mt-4 flex-1 leading-relaxed text-ink/85">{review}</blockquote>
+      <blockquote className="mt-4 flex-1 leading-relaxed text-ink/85">{review.text}</blockquote>
       <figcaption className="mt-5 flex items-center gap-3 border-t border-navy/10 pt-4">
         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-royal to-navy text-sm font-bold text-white">
-          P
+          {review.name
+            .split(' ')
+            .map((part) => part[0])
+            .join('')}
         </span>
-        <span className="font-bold text-navy">Parent</span>
+        <span>
+          <span className="block font-bold text-navy">{review.name}</span>
+          <span className="block text-xs text-muted">Parent</span>
+        </span>
       </figcaption>
     </figure>
   )
@@ -48,7 +54,7 @@ function Reviews() {
           {[0, 1].map((copy) => (
             <ul key={copy} aria-hidden={copy === 1} className="flex shrink-0 items-stretch gap-5 pr-5">
               {reviews.map((review) => (
-                <li key={review} className="flex">
+                <li key={review.name} className="flex">
                   <ReviewCard review={review} />
                 </li>
               ))}
