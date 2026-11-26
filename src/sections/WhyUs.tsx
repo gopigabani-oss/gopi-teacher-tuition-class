@@ -11,7 +11,6 @@ function WhyUs() {
   return (
     <section id="why-us" aria-labelledby="why-us-heading" className="relative scroll-mt-18 overflow-hidden bg-night py-20 md:py-28">
       <div aria-hidden="true" className="dot-grid absolute inset-0" />
-      <div aria-hidden="true" className="absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-gold/20 blur-3xl" />
       <Container>
         <Reveal>
           <SectionHeading id="why-us-heading" eyebrow="Why Choose Us" title="Where minds" highlight="shine" light />
