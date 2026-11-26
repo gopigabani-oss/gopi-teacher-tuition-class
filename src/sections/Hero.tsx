@@ -107,7 +107,7 @@ function Hero() {
         </div>
       </Container>
 
-      <svg aria-hidden="true" viewBox="0 0 1440 60" preserveAspectRatio="none" className="absolute bottom-0 left-0 h-10 w-full text-gold md:h-14">
+      <svg aria-hidden="true" viewBox="0 0 1440 60" preserveAspectRatio="none" className="absolute -bottom-px left-0 h-10 w-full text-gold md:h-14">
         <path d="M0 60V30C240 0 480 0 720 22s480 38 720 8v30z" fill="currentColor" />
       </svg>
     </section>

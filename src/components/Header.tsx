@@ -145,8 +145,8 @@ function Header() {
           id="mobile-menu"
           aria-label="Main"
           inert={!open}
-          className={`absolute inset-y-0 right-0 flex w-[min(20rem,85vw)] flex-col bg-white p-6 shadow-2xl transition-transform duration-300 ${
-            open ? 'translate-x-0' : 'translate-x-full'
+          className={`absolute inset-y-0 right-0 flex w-[min(20rem,85vw)] flex-col bg-white p-6 transition-transform duration-300 ${
+            open ? 'translate-x-0 shadow-2xl' : 'translate-x-full'
           }`}
         >
           <div className="flex items-center justify-between">

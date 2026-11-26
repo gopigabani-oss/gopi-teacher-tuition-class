@@ -4,7 +4,7 @@ import { allSubjects } from '../data/site'
 // Gold band under the hero with every subject scrolling past. The list is drawn twice so the loop is seamless.
 function SubjectStrip() {
   return (
-    <div className="overflow-hidden bg-gold py-4" aria-label={`Subjects: ${allSubjects.join(', ')}`}>
+    <div className="relative -mt-px overflow-hidden bg-gold py-4" aria-label={`Subjects: ${allSubjects.join(', ')}`}>
       <div className="flex w-max animate-marquee hover:[animation-play-state:paused]" aria-hidden="true">
         {[0, 1].map((copy) => (
           <ul key={copy} className="flex shrink-0 items-center">
