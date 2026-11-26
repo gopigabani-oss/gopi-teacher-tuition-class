@@ -1,11 +1,38 @@
-import { useState, type FormEvent } from 'react'
+import { useState, type FormEvent, type ReactNode } from 'react'
 import { boards, mediums, whatsappLink } from '../data/site'
 import { WhatsAppIcon } from './icons'
 
 const standards = Array.from({ length: 12 }, (_, index) => `Std ${index + 1}`)
 
+// Inputs and dropdowns share one height and look, so every field lines up on every phone.
 const fieldClass =
-  'mt-1.5 w-full rounded-xl border border-navy/15 bg-white px-4 py-3 text-ink outline-none transition-colors focus:border-royal focus:ring-4 focus:ring-royal/15'
+  'mt-1.5 block h-12 w-full rounded-xl border border-navy/15 bg-white px-4 text-base text-ink outline-none transition-colors focus:border-royal focus:ring-4 focus:ring-royal/15'
+
+// Dropdown without the phone's own grey styling, with a chevron drawn on the right instead.
+function Select({ name, children }: { name: string; children: ReactNode }) {
+  return (
+    <span className="relative block">
+      <select name={name} required defaultValue="" className={`${fieldClass} appearance-none pr-10`}>
+        <option value="" disabled>
+          Choose
+        </option>
+        {children}
+      </select>
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/2 right-4 mt-[3px] h-4 w-4 -translate-y-1/2 text-royal"
+      >
+        <path d="M6 9l6 6 6-6" />
+      </svg>
+    </span>
+  )
+}
 
 // Admission enquiry that opens WhatsApp with the details already typed, so there is no server to run.
 function EnquiryForm() {
@@ -33,43 +60,34 @@ function EnquiryForm() {
       <h3 className="text-2xl font-extrabold text-navy">Admission enquiry</h3>
       <p className="mt-1 text-sm text-muted">Fill this in and send it to us on WhatsApp.</p>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        <label className="text-sm font-semibold text-navy sm:col-span-2">
+      <div className="mt-6 grid gap-4">
+        <label className="text-sm font-semibold text-navy">
           Student's name
           <input name="student" required autoComplete="off" className={fieldClass} />
         </label>
         <label className="text-sm font-semibold text-navy">
           Standard
-          <select name="standard" required defaultValue="" className={fieldClass}>
-            <option value="" disabled>
-              Choose
-            </option>
+          <Select name="standard">
             {standards.map((standard) => (
               <option key={standard}>{standard}</option>
             ))}
-          </select>
+          </Select>
         </label>
         <label className="text-sm font-semibold text-navy">
           Medium
-          <select name="medium" required defaultValue="" className={fieldClass}>
-            <option value="" disabled>
-              Choose
-            </option>
+          <Select name="medium">
             {mediums.map((medium) => (
               <option key={medium.name}>{medium.name}</option>
             ))}
-          </select>
+          </Select>
         </label>
         <label className="text-sm font-semibold text-navy">
           Board
-          <select name="board" required defaultValue="" className={fieldClass}>
-            <option value="" disabled>
-              Choose
-            </option>
+          <Select name="board">
             {boards.map((board) => (
               <option key={board.short}>{board.short}</option>
             ))}
-          </select>
+          </Select>
         </label>
         <label className="text-sm font-semibold text-navy">
           Parent's phone <span className="font-normal text-muted">(optional)</span>

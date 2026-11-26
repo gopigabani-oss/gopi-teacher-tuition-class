@@ -10,12 +10,17 @@ const stats = [
 ]
 
 // Subject badges that float around the logo; positions are percentages of the logo box.
+// On phones they sit outside the logo's edge so they don't cover it; on larger screens they overlap it slightly.
 const badges = [
-  { text: 'π', className: 'top-[4%] left-[2%] bg-gold text-navy', delay: '0s' },
-  { text: 'અ', className: 'top-[10%] right-[0%] bg-white text-royal', delay: '1.2s' },
-  { text: 'H₂O', className: 'bottom-[14%] left-[-4%] bg-white text-royal text-base', delay: '2.1s' },
-  { text: 'ॐ', className: 'right-[-2%] bottom-[6%] bg-gold text-navy', delay: '0.6s' },
-  { text: 'ABC', className: 'top-[46%] left-[-10%] bg-royal text-white text-sm', delay: '1.7s' },
+  { text: 'π', className: 'top-0 -left-[26%] md:top-[4%] md:left-[2%] bg-gold text-navy text-base md:text-xl', delay: '0s' },
+  { text: 'અ', className: 'top-0 -right-[26%] md:top-[10%] md:right-0 bg-white text-royal text-base md:text-xl', delay: '1.2s' },
+  { text: 'H₂O', className: 'bottom-0 -left-[26%] md:bottom-[14%] md:left-[-4%] bg-white text-royal text-sm md:text-base', delay: '2.1s' },
+  { text: 'ॐ', className: '-right-[26%] bottom-0 md:right-[-2%] md:bottom-[6%] bg-gold text-navy text-base md:text-xl', delay: '0.6s' },
+  {
+    text: 'ABC',
+    className: 'top-[40%] -left-[26%] md:top-[46%] md:left-[-10%] bg-royal text-white text-xs md:text-sm',
+    delay: '1.7s',
+  },
 ]
 
 function Hero() {
@@ -98,7 +103,7 @@ function Hero() {
                 key={badge.text}
                 aria-hidden="true"
                 style={{ animationDelay: badge.delay }}
-                className={`absolute flex h-10 w-10 animate-float items-center justify-center rounded-xl text-base font-extrabold shadow-xl md:h-14 md:w-14 md:rounded-2xl md:text-xl ${badge.className}`}
+                className={`absolute flex h-10 w-10 animate-float items-center justify-center rounded-xl font-extrabold shadow-xl md:h-14 md:w-14 md:rounded-2xl ${badge.className}`}
               >
                 {badge.text}
               </span>
