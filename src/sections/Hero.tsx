@@ -15,12 +15,8 @@ const badges = [
   { text: 'π', className: 'top-0 -left-[26%] md:top-[4%] md:left-[2%] bg-gold text-navy text-base md:text-xl', delay: '0s' },
   { text: 'અ', className: 'top-0 -right-[26%] md:top-[10%] md:right-0 bg-white text-royal text-base md:text-xl', delay: '1.2s' },
   { text: 'H₂O', className: 'bottom-0 -left-[26%] md:bottom-[14%] md:left-[-4%] bg-white text-royal text-sm md:text-base', delay: '2.1s' },
-  { text: 'ॐ', className: '-right-[26%] bottom-0 md:right-[-2%] md:bottom-[6%] bg-gold text-navy text-base md:text-xl', delay: '0.6s' },
-  {
-    text: 'ABC',
-    className: 'top-[40%] -left-[26%] md:top-[46%] md:left-[-10%] bg-royal text-white text-xs md:text-sm',
-    delay: '1.7s',
-  },
+  { text: '√', className: '-right-[26%] bottom-0 md:right-[-2%] md:bottom-[6%] bg-gold text-navy text-lg md:text-2xl', delay: '0.6s' },
+  { text: 'μ', className: 'top-[40%] -left-[26%] md:top-[46%] md:left-[-10%] bg-royal text-white text-lg md:text-2xl', delay: '1.7s' },
 ]
 
 function Hero() {
