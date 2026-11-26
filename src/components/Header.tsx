@@ -134,7 +134,7 @@ function Header() {
         />
       </header>
 
-      {/* Phone menu: slides in from the right over a dimmed page. */}
+      {/* Phone menu: slides in from the left over a dimmed page. */}
       <div className={`fixed inset-0 z-[55] lg:hidden ${open ? '' : 'pointer-events-none'}`}>
         <div
           aria-hidden="true"
@@ -145,8 +145,8 @@ function Header() {
           id="mobile-menu"
           aria-label="Main"
           inert={!open}
-          className={`absolute inset-y-0 right-0 flex w-[min(20rem,85vw)] flex-col bg-white p-6 transition-transform duration-300 ${
-            open ? 'translate-x-0 shadow-2xl' : 'translate-x-full'
+          className={`absolute inset-y-0 left-0 flex w-[min(20rem,85vw)] flex-col bg-white p-6 transition-transform duration-300 ${
+            open ? 'translate-x-0 shadow-2xl' : '-translate-x-full'
           }`}
         >
           <div className="flex items-center justify-between">
