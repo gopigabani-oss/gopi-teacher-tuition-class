@@ -24,7 +24,7 @@ function Levels() {
           />
           {levels.map((level, index) => (
             <li key={level.name}>
-              <Reveal delay={index * 120} className="h-full">
+              <Reveal effect="zoom" delay={index * 150} className="h-full">
                 <div className="group relative h-full text-center">
                   <span className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-royal to-navy text-2xl font-extrabold text-white ring-8 ring-white transition-transform group-hover:scale-110">
                     {index + 1}

@@ -28,7 +28,15 @@ function SectionHeading({ id, eyebrow, title, highlight, intro, light = false }:
               aria-hidden="true"
               className="absolute -bottom-1.5 left-0 h-3 w-full text-gold"
             >
-              <path d="M2 9C50 3 150 1 198 7" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+              <path
+                d="M2 9C50 3 150 1 198 7"
+                pathLength={1}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="4"
+                strokeLinecap="round"
+                className="draw-line"
+              />
             </svg>
           </span>
         )}

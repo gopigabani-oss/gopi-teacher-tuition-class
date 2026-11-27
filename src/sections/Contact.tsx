@@ -25,12 +25,12 @@ function Contact() {
           />
         </Reveal>
         <div className="mt-12 grid gap-6 lg:grid-cols-2 lg:gap-8">
-          <Reveal>
+          <Reveal effect="left">
             <EnquiryForm />
           </Reveal>
           <div className="flex flex-col gap-4">
             {items.map(({ icon: Icon, label, value, href, external }, index) => (
-              <Reveal key={label} delay={index * 100}>
+              <Reveal key={label} effect="right" delay={index * 120}>
                 <a
                   href={href}
                   {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
@@ -46,7 +46,7 @@ function Contact() {
                 </a>
               </Reveal>
             ))}
-            <Reveal delay={300} className="flex-1">
+            <Reveal effect="zoom" delay={400} className="flex-1">
               <iframe
                 title={`Map showing ${site.address}`}
                 src={site.mapEmbed}

@@ -64,7 +64,7 @@ function Courses() {
           {mediums.map((medium, index) => {
             const style = mediumStyles[index]
             return (
-              <Reveal key={medium.name} delay={index * 120} className="h-full">
+              <Reveal key={medium.name} effect={index === 0 ? 'left' : 'right'} delay={index * 120} className="h-full">
                 <article className="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-navy/10 bg-white shadow-xl shadow-navy/5 transition-shadow hover:shadow-2xl hover:shadow-navy/10">
                   <header className={`relative overflow-hidden bg-gradient-to-br ${style.banner} px-6 py-7 text-white md:px-8`}>
                     <div aria-hidden="true" className="dot-grid absolute inset-0" />
@@ -115,7 +115,7 @@ function Courses() {
           })}
         </div>
 
-        <Reveal>
+        <Reveal effect="zoom">
           <div className="relative mt-8 flex flex-col items-center gap-4 rounded-3xl border border-dashed border-gold/60 bg-gold/[0.06] p-5 sm:flex-row sm:justify-center md:p-6">
             <p className="font-extrabold text-navy">Boards we cover</p>
             <ul className="grid grid-cols-4 gap-2 sm:flex sm:flex-wrap sm:justify-center">

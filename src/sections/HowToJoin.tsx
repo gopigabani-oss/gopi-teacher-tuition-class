@@ -8,7 +8,7 @@ function HowToJoin() {
   return (
     <section aria-labelledby="join-heading" className="bg-surface pt-20 md:pt-28">
       <Container>
-        <Reveal>
+        <Reveal effect="zoom">
           <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-royal to-night px-6 py-12 text-white md:px-12 md:py-16">
             <div aria-hidden="true" className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-gold/40 blur-3xl" />
             <div aria-hidden="true" className="dot-grid absolute inset-0" />
@@ -20,10 +20,14 @@ function HowToJoin() {
             </div>
             <ol className="relative mt-10 grid gap-5 md:grid-cols-3">
               {joinSteps.map((step, index) => (
-                <li key={step.title} className="rounded-3xl border border-white/15 bg-white/[0.07] p-6 backdrop-blur">
-                  <span className="text-sm font-extrabold tracking-[0.2em] text-gold-light">STEP {index + 1}</span>
-                  <h3 className="mt-2 text-xl font-extrabold">{step.title}</h3>
-                  <p className="mt-2 text-white/75">{step.text}</p>
+                <li key={step.title}>
+                  <Reveal delay={300 + index * 150} className="h-full">
+                    <div className="h-full rounded-3xl border border-white/15 bg-white/[0.07] p-6 backdrop-blur">
+                      <span className="text-sm font-extrabold tracking-[0.2em] text-gold-light">STEP {index + 1}</span>
+                      <h3 className="mt-2 text-xl font-extrabold">{step.title}</h3>
+                      <p className="mt-2 text-white/75">{step.text}</p>
+                    </div>
+                  </Reveal>
                 </li>
               ))}
             </ol>

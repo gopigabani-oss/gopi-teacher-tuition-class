@@ -32,7 +32,7 @@ function Hero() {
       <Container>
         <div className="relative grid items-center gap-10 pt-10 pb-20 md:gap-12 md:pt-16 lg:grid-cols-[1.15fr_1fr] lg:pt-20 lg:pb-28">
           <div className="text-center lg:text-left">
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90 backdrop-blur">
+            <p className="inline-flex animate-[rise_0.9s_cubic-bezier(0.22,1,0.36,1)_both] items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90 backdrop-blur [animation-delay:100ms]">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold-light opacity-75" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-gold-light" />
@@ -40,21 +40,21 @@ function Hero() {
               Ghodasar, Ahmedabad · Estd {site.established}
             </p>
 
-            <h1 id="hero-heading" className="mt-6 text-[2.75rem] leading-[1.02] font-extrabold tracking-tight md:text-[4.25rem]">
+            <h1 id="hero-heading" className="mt-6 animate-[rise_0.9s_cubic-bezier(0.22,1,0.36,1)_both] text-[2.75rem] leading-[1.02] font-extrabold tracking-tight md:text-[4.25rem] [animation-delay:250ms]">
               Gopi Teacher
               <span className="block bg-gradient-to-r from-gold-light via-gold to-[#f7dd8a] bg-clip-text text-transparent">
                 Tuition Class
               </span>
             </h1>
-            <p className="mt-3 flex items-center justify-center gap-2 font-script text-[2rem] text-gold-light lg:justify-start">
+            <p className="mt-3 flex animate-[rise_0.9s_cubic-bezier(0.22,1,0.36,1)_both] items-center justify-center gap-2 font-script text-[2rem] text-gold-light [animation-delay:400ms] lg:justify-start">
               <SparkleIcon className="h-5 w-5" />
               {site.tagline.toLowerCase()}
             </p>
-            <p className="mx-auto mt-5 max-w-[34rem] text-lg text-white/75 lg:mx-0">
+            <p className="mx-auto mt-5 max-w-[34rem] animate-[rise_0.9s_cubic-bezier(0.22,1,0.36,1)_both] text-lg text-white/75 [animation-delay:550ms] lg:mx-0">
               Every subject from Std 1 to 12, in Gujarati and English medium, for GSEB, NCERT, CBSE and ICSE students.
             </p>
 
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
+            <div className="mt-8 flex animate-[rise_0.9s_cubic-bezier(0.22,1,0.36,1)_both] flex-col justify-center gap-3 [animation-delay:700ms] sm:flex-row lg:justify-start">
               <a
                 href={site.whatsappHref}
                 target="_blank"
@@ -74,7 +74,7 @@ function Hero() {
               </a>
             </div>
 
-            <dl className="mx-auto mt-10 grid max-w-[32rem] grid-cols-4 divide-x divide-white/10 rounded-2xl border border-white/10 bg-white/5 py-4 backdrop-blur lg:mx-0">
+            <dl className="mx-auto mt-10 grid max-w-[32rem] grid-cols-4 divide-x divide-white/10 rounded-2xl border border-white/10 bg-white/5 py-4 backdrop-blur lg:mx-0 animate-[rise_0.9s_cubic-bezier(0.22,1,0.36,1)_both] [animation-delay:850ms]">
               {stats.map((stat) => (
                 <div key={stat.label} className="flex flex-col-reverse items-center px-2">
                   <dt className="mt-1 text-xs text-white/60">{stat.label}</dt>
@@ -84,7 +84,7 @@ function Hero() {
             </dl>
           </div>
 
-          <div className="relative order-first mx-auto w-[13rem] md:w-[24rem] lg:order-none lg:w-[27rem]">
+          <div className="relative order-first mx-auto animate-[pop_1s_cubic-bezier(0.22,1,0.36,1)_both] w-[13rem] md:w-[24rem] lg:order-none lg:w-[27rem]">
             <div aria-hidden="true" className="absolute -inset-6 animate-spin-slow rounded-full border-2 border-dashed border-gold/40" />
             <div aria-hidden="true" className="absolute -inset-14 hidden rounded-full border border-white/10 md:block" />
             <img

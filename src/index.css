@@ -33,6 +33,13 @@
       transform: translateY(-12px);
     }
   }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+      filter: blur(6px);
+    }
+  }
   @keyframes pop {
     from {
       opacity: 0;
@@ -62,22 +69,57 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Blocks sliding in from the side start off-screen; don't let them widen the page. */
+html,
+body {
+  overflow-x: clip;
+}
+
 body {
   /* Room for the Call / WhatsApp bar fixed to the bottom on phones. */
   @apply bg-surface pb-17 font-body text-ink antialiased md:pb-0;
 }
 
-/* Sections fade up as they scroll into view; see components/Reveal.tsx. */
+/* Blocks animate in the first time they scroll into view; see components/Reveal.tsx.
+   Each effect sets where the block starts; they all settle to their normal place. */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  filter: blur(6px);
   transition:
-    opacity 0.7s ease,
-    transform 0.7s ease;
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-up {
+  transform: translateY(60px);
+}
+.reveal-left {
+  transform: translateX(-80px);
+}
+.reveal-right {
+  transform: translateX(80px);
+}
+.reveal-zoom {
+  transform: scale(0.8);
+}
+.reveal-flip {
+  transform: perspective(900px) rotateX(35deg) translateY(40px);
+  transform-origin: top center;
 }
 .reveal.is-visible {
   opacity: 1;
+  filter: none;
   transform: none;
+}
+
+/* A section heading's gold underline draws itself in once the heading is on screen. */
+.reveal .draw-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1s ease 0.5s;
+}
+.reveal.is-visible .draw-line {
+  stroke-dashoffset: 0;
 }
 
 /* Horizontal scrollers that swipe without showing a scrollbar. */
@@ -100,8 +142,12 @@ body {
   }
   .reveal {
     opacity: 1;
+    filter: none;
     transform: none;
     transition: none;
+  }
+  .reveal .draw-line {
+    stroke-dashoffset: 0;
   }
   *,
   *::before,

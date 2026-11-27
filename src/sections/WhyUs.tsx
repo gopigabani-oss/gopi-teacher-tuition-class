@@ -17,7 +17,7 @@ function WhyUs() {
         </Reveal>
         <ul className="relative mt-12 grid gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-4">
           <li className="sm:col-span-2 lg:row-span-2">
-            <Reveal className="h-full">
+            <Reveal effect="left" className="h-full">
               <div className="relative flex h-full min-h-[16rem] flex-col justify-end overflow-hidden rounded-3xl bg-gradient-to-br from-gold-light via-gold to-[#b07f0c] p-8 text-navy">
                 <img
                   src="/images/logo.webp"
@@ -32,7 +32,7 @@ function WhyUs() {
           </li>
           {rest.map((reason, index) => (
             <li key={reason.title}>
-              <Reveal delay={index * 80} className="h-full">
+              <Reveal effect="flip" delay={150 + index * 120} className="h-full">
                 <div className="h-full rounded-3xl border border-white/10 bg-white/[0.06] p-6 backdrop-blur transition-colors hover:border-gold/50 hover:bg-white/10">
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gold/15 text-gold-light">
                     <StarIcon className="h-5 w-5" />

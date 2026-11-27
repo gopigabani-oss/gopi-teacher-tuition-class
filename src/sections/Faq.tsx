@@ -12,7 +12,7 @@ function Faq() {
         </Reveal>
         <div className="mx-auto mt-12 flex max-w-[48rem] flex-col gap-3">
           {faqs.map((faq, index) => (
-            <Reveal key={faq.question} delay={index * 60}>
+            <Reveal key={faq.question} effect="left" delay={index * 90}>
               <details
                 name="faq"
                 open={index === 0}

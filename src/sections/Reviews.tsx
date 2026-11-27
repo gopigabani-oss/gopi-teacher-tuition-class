@@ -55,38 +55,40 @@ function Reviews() {
         </Reveal>
       </Container>
 
-      <div className="relative mt-12">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-sky md:w-24" />
-        <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-sky md:w-24" />
-        <div ref={row} className="flex w-max will-change-transform">
-          {[0, 1].map((copy) => (
-            <ul
-              key={copy}
-              aria-label={copy === 0 ? 'Parent reviews' : undefined}
-              aria-hidden={copy === 1}
-              className="flex shrink-0 items-stretch gap-5 pr-5"
-            >
-              {reviews.map((review) => (
-                <li key={review.name} className="flex w-[17rem] shrink-0 md:w-[22rem]">
-                  <figure className="flex w-full flex-col rounded-3xl border border-navy/10 bg-white p-6 shadow-sm md:p-7">
-                    <QuoteIcon className="h-9 w-9 text-gold" />
-                    <blockquote className="mt-4 flex-1 text-[1.0625rem] leading-relaxed text-ink/85">{review.text}</blockquote>
-                    <figcaption className="mt-6 flex items-center gap-3 border-t border-navy/10 pt-5">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-royal to-navy text-sm font-bold text-white">
-                        {initials(review.name)}
-                      </span>
-                      <span>
-                        <span className="block font-bold text-navy">{review.name}</span>
-                        <span className="block text-xs text-muted">Parent</span>
-                      </span>
-                    </figcaption>
-                  </figure>
-                </li>
-              ))}
-            </ul>
-          ))}
+      <Reveal effect="right">
+        <div className="relative mt-12">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-sky md:w-24" />
+          <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-sky md:w-24" />
+          <div ref={row} className="flex w-max will-change-transform">
+            {[0, 1].map((copy) => (
+              <ul
+                key={copy}
+                aria-label={copy === 0 ? 'Parent reviews' : undefined}
+                aria-hidden={copy === 1}
+                className="flex shrink-0 items-stretch gap-5 pr-5"
+              >
+                {reviews.map((review) => (
+                  <li key={review.name} className="flex w-[17rem] shrink-0 md:w-[22rem]">
+                    <figure className="flex w-full flex-col rounded-3xl border border-navy/10 bg-white p-6 shadow-sm md:p-7">
+                      <QuoteIcon className="h-9 w-9 text-gold" />
+                      <blockquote className="mt-4 flex-1 text-[1.0625rem] leading-relaxed text-ink/85">{review.text}</blockquote>
+                      <figcaption className="mt-6 flex items-center gap-3 border-t border-navy/10 pt-5">
+                        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-royal to-navy text-sm font-bold text-white">
+                          {initials(review.name)}
+                        </span>
+                        <span>
+                          <span className="block font-bold text-navy">{review.name}</span>
+                          <span className="block text-xs text-muted">Parent</span>
+                        </span>
+                      </figcaption>
+                    </figure>
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }
