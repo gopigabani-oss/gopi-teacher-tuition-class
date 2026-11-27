@@ -51,6 +51,11 @@ function Footer() {
                   WhatsApp us
                 </a>
               </li>
+              <li>
+                <a href={site.instagramHref} target="_blank" rel="noreferrer" className="hover:text-white">
+                  Instagram
+                </a>
+              </li>
             </ul>
           </div>
         </div>

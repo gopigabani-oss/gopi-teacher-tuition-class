@@ -15,6 +15,8 @@ export const site = {
   address: 'B/10 Smrutibindu Park Society, Ghodasar, Ahmedabad',
   mapHref: 'https://www.google.com/maps/search/?api=1&query=Smrutibindu+Park+Society+Ghodasar+Ahmedabad',
   mapEmbed: 'https://www.google.com/maps?q=Smrutibindu+Park+Society,+Ghodasar,+Ahmedabad&output=embed',
+  instagramHandle: '@gopi_teacher_tuition_class',
+  instagramHref: 'https://www.instagram.com/gopi_teacher_tuition_class/',
 }
 
 export const navLinks = [

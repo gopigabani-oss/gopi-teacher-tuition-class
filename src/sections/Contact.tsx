@@ -1,6 +1,6 @@
 import Container from '../components/Container'
 import EnquiryForm from '../components/EnquiryForm'
-import { MapPinIcon, PhoneIcon, WhatsAppIcon } from '../components/icons'
+import { InstagramIcon, MapPinIcon, PhoneIcon, WhatsAppIcon } from '../components/icons'
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
 import { site } from '../data/site'
@@ -10,6 +10,7 @@ function Contact() {
     { icon: MapPinIcon, label: 'Address', value: site.address, href: site.mapHref, external: true },
     { icon: PhoneIcon, label: 'Phone', value: site.phoneDisplay, href: site.phoneHref, external: false },
     { icon: WhatsAppIcon, label: 'WhatsApp', value: site.phoneDisplay, href: site.whatsappHref, external: true },
+    { icon: InstagramIcon, label: 'Instagram', value: site.instagramHandle, href: site.instagramHref, external: true },
   ]
 
   return (
@@ -41,7 +42,7 @@ function Contact() {
                   </span>
                   <span>
                     <span className="block text-xs font-bold tracking-[0.15em] text-[#9a7410] uppercase">{label}</span>
-                    <span className="mt-0.5 block font-bold text-navy">{value}</span>
+                    <span className="mt-0.5 block font-bold [overflow-wrap:anywhere] text-navy">{value}</span>
                   </span>
                 </a>
               </Reveal>
